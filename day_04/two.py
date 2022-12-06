@@ -3,7 +3,7 @@ return pairs as [low, high] in arr
 '''
 def create_data_structure():
     all_left, all_right = [], []
-    with open('small.txt') as file:
+    with open('large.txt') as file:
         for line in file:
             temp = line.rstrip()
             pairs = temp.split(',')
@@ -19,10 +19,10 @@ compute overlap of pairs
 def find_overlap(arr1, arr2):
     count = 0
     for i in range(len(arr1)):
+        if arr2[i][0] <= arr1[i][0]:
+            arr1[i], arr2[i] = arr2[i], arr1[i]         
         if arr1[i][1] >= arr2[i][0]:
             count += 1
-        # elif arr2[i][1] >= arr1[i][0]:
-        #     count += 1
     return count
 
 '''
@@ -31,6 +31,5 @@ run code
 def main():
     pairs = create_data_structure()
     answer = find_overlap(pairs[0], pairs[1])
-    print(answer) # incorrect
-
+    print(answer) # correct
 main()
